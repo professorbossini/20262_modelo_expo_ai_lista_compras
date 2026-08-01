@@ -69,6 +69,7 @@ export default function App() {
 
       <FlatList
         data={itens}
+        keyExtractor={(item) => item.codigo}
         renderItem={({ item }) => (
           <ItemLista item={item} onAlternar={alternarComprado} />
         )}
