@@ -3,6 +3,7 @@ import {
   FlatList, Pressable, StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Haptics from 'expo-haptics';
 
 import ItemLista from './components/ItemLista';
 import { ITENS_INICIAIS } from './data/itens';
@@ -35,6 +36,7 @@ export default function App() {
   }
 
   function alternarComprado(codigo) {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setItens(
       itens.map((item) =>
         item.codigo === codigo ? { ...item, comprado: !item.comprado } : item
