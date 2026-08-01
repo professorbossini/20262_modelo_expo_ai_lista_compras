@@ -25,7 +25,7 @@ export default function App() {
     const novo = {
       codigo: String(Date.now()),
       nome: nome.trim(),
-      quantidade: quantidade,
+      quantidade: Number(quantidade) || 1,
       comprado: false,
     };
 
