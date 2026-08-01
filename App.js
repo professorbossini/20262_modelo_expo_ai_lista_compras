@@ -35,9 +35,11 @@ export default function App() {
   }
 
   function alternarComprado(codigo) {
-    const item = itens.find((i) => i.codigo === codigo);
-    item.comprado = !item.comprado;
-    setItens(itens);
+    setItens(
+      itens.map((item) =>
+        item.codigo === codigo ? { ...item, comprado: !item.comprado } : item
+      )
+    );
   }
 
   return (
