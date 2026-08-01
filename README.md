@@ -39,6 +39,24 @@ Três coisas aparecem sozinhas, sem você tocar em nada:
 Os outros dois defeitos só se manifestam quando você **usa** o aplicativo.
 Abrir a tela e ver que ela renderiza não é teste de nada.
 
+## Onde vão os critérios e os prompts
+
+São coisas diferentes e vão para lugares diferentes.
+
+Os **prompts** vão no painel do GitHub Copilot Chat, com o seletor de modo em
+**Agent** — não no chat inline sobre o código, nem no modo Ask, porque nenhum
+dos dois enxerga as ferramentas do MCP. Use `Shift+Enter` para quebrar linha
+sem enviar.
+
+Os **critérios de aceitação** não vão para o Copilot. Eles são o seu
+instrumento de medida: você escreve antes para que o resultado do agente não
+defina sozinho o que era sucesso. Use o `CRITERIOS.md` deste repositório, que
+já vem com as seções vazias.
+
+Dá para colar o critério dentro do prompt, e às vezes o resultado sai melhor.
+Mas aí o agente passa a otimizar para o seu critério e a afirmar que o
+atendeu — e você perde a medida independente.
+
 ## Conectando o servidor MCP do Expo
 
 Crie `.vscode/mcp.json` na raiz do repositório:
