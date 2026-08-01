@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   FlatList, Pressable, StyleSheet, Text, TextInput, View,
 } from 'react-native';
@@ -11,15 +11,11 @@ export default function App() {
   const [itens, setItens] = useState(ITENS_INICIAIS);
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
-  const [resumo, setResumo] = useState({ total: 0, comprados: 0 });
 
-  useEffect(() => {
-    console.log('recalculando resumo');
-    setResumo({
-      total: itens.length,
-      comprados: itens.filter((item) => item.comprado).length,
-    });
-  });
+  const resumo = {
+    total: itens.length,
+    comprados: itens.filter((item) => item.comprado).length,
+  };
 
   const totalUnidades = itens.reduce((soma, item) => soma + item.quantidade, 0);
 
