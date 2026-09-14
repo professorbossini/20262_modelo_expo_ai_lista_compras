@@ -12,28 +12,31 @@ falhar: se nada nele pode reprovar, não é critério.
 
 ## Defeito 1 — a linha empilhada
 
-- [ ]
-- [ ]
-- [ ]
+- [ x ] marcador, nome e quantidade aparecem lado a lado na horizontal
+- [ x ] o nome ocupa o espaço do meio, esticando conforme o texto
+- [ x ] a quantidade fica encostada na margem direita
 
-**Verificado em:** ( ) aparelho físico ( ) emulador
-**Resultado:** ( ) passou ( ) reprovou
+**Verificado em:** ( ) aparelho físico ( x ) emulador
+**Resultado:** ( x ) passou ( ) reprovou
 
 ---
 
 ## Defeito 2 — o aviso de chaves
 
-- [ ]
-- [ ]
+- [ x ] o aviso sobre chaves desaparece do terminal
+- [ x ] cada linha é identificada pelo campo codigo
+- [ x ] a identificação não usa a posição do item da lista
 
-**Resultado:** ( ) passou ( ) reprovou
+**Verificado em:** ( ) aparelho físico ( x ) emulador
+**Resultado:** ( x ) passou ( ) reprovou
 
 ---
 
 ## Defeito 3 — o efeito em laço
 
-- [ ]
-- [ ]
+- [ ] o laço para
+- [ ] o arquivo não contém nenhum useState cujo valor possa ser calculado a partir de itens
+- [ ] o arquivo não contém nenhum useEffect cuja única função seja manter esse valor
 
 **Resultado:** ( ) passou ( ) reprovou
 

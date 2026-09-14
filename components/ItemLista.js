@@ -18,6 +18,7 @@ export default function ItemLista({ item, onAlternar }) {
 
 const styles = StyleSheet.create({
   linha: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 12,
