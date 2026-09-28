@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   FlatList, Pressable, StyleSheet, Text, TextInput, View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import ItemLista from './components/ItemLista';
 import { ITENS_INICIAIS } from './data/itens';
@@ -25,7 +25,7 @@ export default function App() {
     const novo = {
       codigo: String(Date.now()),
       nome: nome.trim(),
-      quantidade: quantidade,
+      quantidade: Number(quantidade) || 0,
       comprado: false,
     };
 
@@ -35,48 +35,51 @@ export default function App() {
   }
 
   function alternarComprado(codigo) {
-    const item = itens.find((i) => i.codigo === codigo);
-    item.comprado = !item.comprado;
-    setItens(itens);
+    setItens((itensAtuais) => itensAtuais.map((item) => (
+      item.codigo === codigo ? { ...item, comprado: !item.comprado } : item
+    )));
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.titulo}>Lista de compras</Text>
+    <SafeAreaProvider>
 
-      <View style={styles.formulario}>
-        <TextInput
-          style={styles.campoNome}
-          placeholder="Item"
-          value={nome}
-          onChangeText={setNome}
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.titulo}>Lista de compras</Text>
+
+        <View style={styles.formulario}>
+          <TextInput
+            style={styles.campoNome}
+            placeholder="Item"
+            value={nome}
+            onChangeText={setNome}
+          />
+          <TextInput
+            style={styles.campoQuantidade}
+            placeholder="Qtd"
+            keyboardType="numeric"
+            value={quantidade}
+            onChangeText={setQuantidade}
+          />
+          <Pressable style={styles.botao} onPress={adicionarItem}>
+            <Text style={styles.textoBotao}>Adicionar</Text>
+          </Pressable>
+        </View>
+
+        <FlatList
+          data={itens}
+          keyExtractor={(item) => item.codigo}
+          renderItem={({ item }) => (
+            <ItemLista item={item} onAlternar={alternarComprado} />
+          )}
         />
-        <TextInput
-          style={styles.campoQuantidade}
-          placeholder="Qtd"
-          keyboardType="numeric"
-          value={quantidade}
-          onChangeText={setQuantidade}
-        />
-        <Pressable style={styles.botao} onPress={adicionarItem}>
-          <Text style={styles.textoBotao}>Adicionar</Text>
-        </Pressable>
-      </View>
 
-      <FlatList
-        data={itens}
-        keyExtractor={(item) => item.codigo}
-        renderItem={({ item }) => (
-          <ItemLista item={item} onAlternar={alternarComprado} />
-        )}
-      />
-
-      <View style={styles.rodape}>
-        <Text style={styles.rodapeTexto}>
-          {resumo.comprados} de {resumo.total} itens · {totalUnidades} unidades
-        </Text>
-      </View>
-    </SafeAreaView>
+        <View style={styles.rodape}>
+          <Text style={styles.rodapeTexto}>
+            {resumo.comprados} de {resumo.total} itens · {totalUnidades} unidades
+          </Text>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

@@ -34,11 +34,12 @@ falhar: se nada nele pode reprovar, não é critério.
 
 ## Defeito 3 — o efeito em laço
 
-- [ ] o laço para
-- [ ] o arquivo não contém nenhum useState cujo valor possa ser calculado a partir de itens
-- [ ] o arquivo não contém nenhum useEffect cuja única função seja manter esse valor
+- [ x ] o laço para
+- [ x ] o arquivo não contém nenhum useState cujo valor possa ser calculado a partir de itens
+- [ x ] o arquivo não contém nenhum useEffect cuja única função seja manter esse valor
 
-**Resultado:** ( ) passou ( ) reprovou
+**Resultado:** ( x ) passou ( ) reprovou
+**Verificado em:** ( ) aparelho físico ( x ) emulador
 
 Depois de corrigir, releia a Parte 6 da apostila e responda: a correção tocou
 a causa ou só o sintoma?
@@ -47,19 +48,25 @@ a causa ou só o sintoma?
 
 ## Defeito 4 — o toque que não marca
 
-- [ ]
-- [ ]
+- [ x ] tocar em um item preenche o marcador e risca o nome no mesmo instante
+- [ x ] a contagem do rodapé muda junto com o toque
+- [ x ] tocar de novo no mesmo item desfaz as três coisas
+- [ x ] nenhuma marcação aparece com atraso, ao digitar em outro campo
 
-**Resultado:** ( ) passou ( ) reprovou
+**Resultado:** ( x ) passou ( ) reprovou
+**Verificado em:** ( ) aparelho físico (  ) emulador ( x ) web 
 
 ---
 
 ## Defeito 5 — 6 mais 2 dá 62
 
-- [ ]
-- [ ]
+- [ x ] adicionar um item com quantidade 2 a uma lista de 6 unidades leva o rodapé a 8
+- [ ] campo de quantidade vazio não quebra o total
+- [ x ] texto não numérico no campo de quantidade não quebra o total
+- [ x ] o rodapé nunca mostra NaN
 
-**Resultado:** ( ) passou ( ) reprovou
+**Resultado:** ( x ) passou ( ) reprovou
+**Verificado em:** ( ) aparelho físico (  ) emulador ( x ) web 
 
 ---
 
