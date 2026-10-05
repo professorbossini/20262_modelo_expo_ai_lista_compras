@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import * as Clipboard from 'expo-clipboard';
 import {
-  FlatList, Pressable, StyleSheet, Text, TextInput, View,
+  Alert, FlatList, Pressable, StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -40,6 +41,24 @@ export default function App() {
     )));
   }
 
+  function escapar(texto) {
+    return texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  async function copiarLista() {
+    // U+0336 (tachado combinado) mantém o risco quando o destino descarta o HTML.
+    const riscar = (texto) => [...texto].map((c) => `${c}\u0336`).join('');
+    const linhas = itens.map((item) => {
+      const texto = `${item.nome} (${item.quantidade})`;
+      if (!item.comprado) return `<li>${escapar(texto)}</li>`;
+      return `<li><s style="text-decoration: line-through">${escapar(riscar(texto))}</s></li>`;
+    });
+    const html = `<h3>Lista de compras</h3><ul>${linhas.join('')}</ul>`;
+
+    await Clipboard.setStringAsync(html, { inputFormat: Clipboard.StringFormat.HTML });
+    Alert.alert('Lista copiada');
+  }
+
   return (
     <SafeAreaProvider>
 
@@ -77,6 +96,9 @@ export default function App() {
           <Text style={styles.rodapeTexto}>
             {resumo.comprados} de {resumo.total} itens · {totalUnidades} unidades
           </Text>
+          <Pressable style={styles.botao} onPress={copiarLista}>
+            <Text style={styles.textoBotao}>Copiar</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -110,6 +132,7 @@ const styles = StyleSheet.create({
   rodape: {
     borderTopWidth: 1, borderTopColor: '#E5E5E5',
     paddingHorizontal: 16, paddingVertical: 12,
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
   },
   rodapeTexto: { color: '#5B6472', fontSize: 14 },
 });

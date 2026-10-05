@@ -78,6 +78,17 @@ a causa ou só o sintoma?
 
 **Resultado:** ( ) passou ( ) reprovou
 
+
+## Funcionalidade nova — copiar e colar
+
+- [ ] tocar em "Copiar lista" envia o conteúdo atual da lista para área de transferência
+- [ ] colar em outro aplicativo reproduz uma linha por item
+- [ ] cada linha indica se o item já foi comprado
+- [ ] há uma quebra de linha entre os itens, e não tudo emendado
+- [ ] a lista do aplicativo continua igual depois de copiar
+
+**Resultado:** ( ) passou ( ) reprovou
+
 ---
 
 ## Antes de aceitar cada diff
